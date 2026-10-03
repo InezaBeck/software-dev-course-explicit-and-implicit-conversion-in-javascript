@@ -18,15 +18,30 @@ Use console.log() to clearly show the before-and-after type conversions.
 
 */
 
-
-let result = "5" - 2;
+// Number() converts the string "5" to the number 5, so that the subtraction doesn't rely on JavaScript's implicit conversion
+let result = Number("5") - 2;
 console.log("The result is: " + result);
 
-let isValid = Boolean("false");
+// "false" in quotes is a non-empty string, which is truthy, so Boolean("false") gave true.
+// Using the Boolean value false with no quotes makes isValid actually false
+let isValid = false;
 if (isValid) {
-    console.log("This is valid!");
+  console.log("This is valid!");
 }
 
 let age = "25";
-let totalAge = age + 5;
+// since age is string "25", + would join them as text ("255"). Number() converts age to the number 25 first, so that + can do addition easily
+let totalAge = Number(age) + 5;
 console.log("Total Age: " + totalAge);
+
+// Implicit conversion
+let score = 7;
+console.log(score, typeof score);
+let scoreText = "Score: " + score;
+console.log(scoreText, typeof scoreText);
+
+// Explicit conversion with an edge case
+let emptyValue = null;
+console.log(emptyValue, typeof emptyValue);
+let convertedValue = Boolean(emptyValue);
+console.log(convertedValue, typeof convertedValue);
